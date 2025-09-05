@@ -1,0 +1,47 @@
+--[[
+This module is a quick mockup of a hiding functionality module meant to 
+eliminate remote events from the current server and client hiding scripts
+Furthermore, the modules offer chained functionality that requires the client only
+to interact with the prox prompt and nothing more (removes countdown scripts). 
+All else is handled through the modules.\\
+
+Possibility of expanding this to handle even more functionality including
+sanity checks (communications between server and seperate modules). 
+
+Example: 
+Hiding spot checks, such as:
+    start : 
+        if player is already hiding in the spot
+        if player is in cooldown
+        if player is seeker
+
+    end   : 
+        if player leaving spot is correct player 
+
+can be moved to seperate modules that can be called first to return bool values
+before proceeding to call the hidingFuncs.Hide() function and place the player in
+the spot. 
+
+Example module script:]]
+    function hideFuncs.Check(plr, spot)
+        local checksBool = false
+        if plr.backpack.seekerVal == false then
+            if plr.backpack.hideCoolDown == false then
+                if spot.hidingPlayerBool == false then
+                    checksBool = true
+                    return checksBool
+                end
+            end
+        end
+    end
+
+            
+
+
+--Example piece of prox prompt code:
+--...
+    hideSanity = hideFuncs.Check(plr, spot)
+    if hideSanity == true then
+        hideFuncs.Hide(plr, spot)
+    end
+--...
