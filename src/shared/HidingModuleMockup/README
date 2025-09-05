@@ -30,11 +30,20 @@ Example module script:]]
                 if spot.hidingPlayerBool == false then
                     checksBool = true
                     return checksBool
+                else
+                    --returns that a player is hiding there
+                    return 1
                 end
+            else
+                --returns that player is still in cool down
+                return 2
             end
+        else
+            --returns that player is seeker
+            return 3
         end
     end
-
+    
             
 
 
@@ -43,5 +52,11 @@ Example module script:]]
     hideSanity = hideFuncs.Check(plr, spot)
     if hideSanity == true then
         hideFuncs.Hide(plr, spot)
+    else if hideSanity == 1 then
+        print("player hiding there")
+    else if hideSanity == 2 then 
+        print("you are in cooldown")
+    else if hideSanity == 3 then
+        print("seeker cannot hide")
     end
 --...
