@@ -1,0 +1,3 @@
+Potentially better suited as a module script that may be fired through the prox 
+prompt on the server side. This could create better disconnections and prevent
+memory leaks from remote events as well as handle the timer issue for clients. (Connection is never disconnected for countdowns currently).
