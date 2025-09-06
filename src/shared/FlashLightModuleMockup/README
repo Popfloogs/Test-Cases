@@ -1,0 +1,4 @@
+Module for flashlight control and checks. Certain portions were not fully used in current
+game state. This is a mock up because, other than FLAdd and FLRemove, the rest of this 
+code has not been implemented or tested as of yet. 
+
