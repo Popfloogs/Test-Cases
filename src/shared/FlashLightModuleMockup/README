@@ -2,3 +2,13 @@ Module for flashlight control and checks. Certain portions were not fully used i
 game state. This is a mock up because, other than FLAdd and FLRemove, the rest of this 
 code has not been implemented or tested as of yet. 
 
+FLRemove works as the transfer of the flashlight between current seeker and the tagged, new seeker.
+FLRemove also handles the transfer of the already cloned light from a storage folder to the new seeker.
+Instead of generating a new clone.
+
+FLAdd is only called within the modules as a failsafe for if the seeker is not assigned a light.
+
+FLSeeker is the initial seeker selection at game start up. This clones the first light from Replicated storage.
+
+FLSanity is run periodically throughout play just as a check to ensure the light has been assigned. If no light has been assigned
+a new clone is created and a new seeker is selected adding the newly cloned light to their pack.
