@@ -9,3 +9,12 @@ for i in ipairs(players:GetChildren()) do
     plr.character:waitforchild("Humanoid").WalkSpeed = 30
 end
 
+--seeker initialization
+local seeker = players[math.random(1, #players)]
+FLSanity.FLAdd(seeker)
+
+--[[ Loading finished
+announce who seeker is in GUI
+
+begin game start countdown
+]]
