@@ -1,0 +1,11 @@
+--flashlight initialization
+local fl = game.ReplicatedStorage:waitforchild("Tools").Flashlight:Clone()
+fl.parent = game.replicatedstorage.Tools.UsedLights
+
+--player initialization
+local players = game.Players:GetPlayers()
+for i in ipairs(players:GetChildren()) do
+    local plr = i:GetPlayerFromCharacter()
+    plr.character:waitforchild("Humanoid").WalkSpeed = 30
+end
+
