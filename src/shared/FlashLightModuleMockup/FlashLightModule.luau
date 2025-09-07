@@ -6,23 +6,16 @@ local FLSanity = {}
 		wait(1)
 		local newSeeker = game.Players:GetPlayerFromCharacter(target.Parent)
 		newSeeker.CharacterAdded:Wait()
-		game.ReplicatedStorage.Tools.UsedLights:WaitForChild("Flashlight").Parent = newSeeker.Backpack
-		newSeeker.Character:WaitForChild("Humanoid").WalkSpeed = 30
-		newSeeker.Backpack.seekerVal.Value = true
+		FLSanity.FLAdd(newSeeker)
         return
 	end
 
 	function FLSanity.FLAdd(plr)
-		local fl = game.ReplicatedStorage.Tools.Flashlight:Clone()
-		fl.Parent = plr.Backpack
+		game.ReplicatedStorage.Tools.UsedLights:WaitForChild("Flashlight").Parent = plr.Backpack
+		plr.Character:WaitForChild("Humanoid").WalkSpeed = 30
+		plr.Backpack.seekerVal.Value = true
         return
 	end
-
-    function FLSanity.FLSeeker(playerList)
-        local seeker = playerList[math.random(1, #playerList)]
-        FLSanity.FLAdd(seeker)
-        return
-    end
 
     function FLSanity.FLSanity()
         local playerList = game.Players:GetPlayers()
