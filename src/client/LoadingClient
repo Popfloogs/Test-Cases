@@ -1,0 +1,32 @@
+local loading, plr, loadingResponse = game.ReplicatedStorage.Events.loadingScreen, game.Players.LocalPlayer, game.ReplicatedStorage.Events.loadingResponse
+
+function loadSCreen()
+    local loadScreen, finishVal = plr.StarterGui.LoadGui, plr.BackPack.Vals.finishedVal
+    local content, mainFrame = game:GetService("ContentProvider"), loadScreen.mainFrame
+
+    repeat wait() until game:IsLoaded()
+
+    local gameAssets = game:GetDescendants()
+    local totalAssets = #gameAssets
+    local loadBar = mainFrame:WaitForChild("loadBar"):WaitForChild("Frame")
+
+    loadBar.Size = UDim2.new(0, 0, 1, 0)
+
+    local function updateText(progress)
+        mainFrame:WaitForChild("TextLabel").Text = string.format("Assets Loaded: %d/%d", progress, totalAssets)
+    end
+    wait(0.5)
+
+    for i, assetLoading in ipairs(gameAssets) do
+        content:PreloadAsync({assetLoading})
+        updateText(i)
+        loadBar.Size = UDim2.new(i / totalAssets, 0, 1, 0)
+    end
+    mainFrame:WaitForChild("TextLabel").Text = "Waiting for other players..."
+    
+
+loading.OnCLientEvent:Connect(loadScreen())
+loadingResponse.OnClientEvent:Connect(function()
+    local loadScreen = plr.StarterGui.LoadGui
+    loadScreen.Endabled = false
+end)
